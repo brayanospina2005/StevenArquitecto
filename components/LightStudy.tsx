@@ -53,6 +53,13 @@ export default function LightStudy() {
     const wrap = wrapRef.current;
     const canvas = canvasRef.current;
     if (!wrap || !canvas) return;
+    let stopped = false;
+    let booted = false;
+    let release = () => {};
+
+    const boot = () => {
+    if (stopped || booted) return;
+    booted = true;
     const gl = canvas.getContext("webgl", { alpha: false, antialias: false, powerPreference: "high-performance" });
     if (!gl) return;
 
@@ -151,26 +158,38 @@ export default function LightStudy() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
       draw(1);
-      return () => { gl.deleteProgram(program); gl.deleteBuffer(buffer); };
+      release = () => { gl.deleteProgram(program); gl.deleteBuffer(buffer); };
+      return;
     }
 
     let frame = 0;
+    const nearView = () => {
+      const rect = wrap.getBoundingClientRect();
+      return rect.bottom > -240 && rect.top < window.innerHeight + 240;
+    };
     const tick = () => {
+      if (!nearView() && Math.abs(target - current) < 0.002) {
+        frame = 0;
+        return;
+      }
       current += (target - current) * 0.18;
       if (Math.abs(target - current) < 0.0004) current = target;
       draw(current);
       frame = requestAnimationFrame(tick);
     };
+    const wake = () => {
+      if (!frame) frame = requestAnimationFrame(tick);
+    };
     const st = ScrollTrigger.create({
       trigger: wrap,
       start: "top top",
       end: "bottom bottom",
-      onUpdate: (self) => { target = self.progress; },
+      onUpdate: (self) => { target = self.progress; wake(); },
     });
-    const ro = new ResizeObserver(() => { resize(); draw(current); });
+    const ro = new ResizeObserver(() => { resize(); if (nearView()) draw(current); });
     ro.observe(wrap);
-    frame = requestAnimationFrame(tick);
-    return () => {
+    wake();
+    release = () => {
       cancelAnimationFrame(frame);
       st.kill();
       ro.disconnect();
@@ -178,6 +197,27 @@ export default function LightStudy() {
       gl.deleteShader(vs);
       gl.deleteShader(fs);
       gl.deleteBuffer(buffer);
+    };
+    };
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) boot();
+
+    const onScroll = () => {
+      if (window.scrollY > 24) {
+        window.removeEventListener("scroll", onScroll);
+        boot();
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    const idle = window.requestIdleCallback?.(() => {
+      if (window.scrollY > 80) boot();
+    }, { timeout: 2500 });
+
+    return () => {
+      stopped = true;
+      window.removeEventListener("scroll", onScroll);
+      if (idle !== undefined) window.cancelIdleCallback(idle);
+      release();
     };
   }, []);
 

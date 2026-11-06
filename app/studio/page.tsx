@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Reveal, SlatsImage } from "@/components/Reveal";
+import Photo from "@/components/Photo";
 import { IM } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -61,8 +62,7 @@ export default function StudioPage() {
           {IM.team.map((person, i) => (
             <Reveal key={person.name} delay={(i % 3) * 0.07}>
               <div className="relative overflow-hidden aspect-[3/4] bg-[#ded7cc] group">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={person.photo} alt={person.name} className="img-cover absolute inset-0 group-hover:scale-[1.04] transition-transform duration-700" loading="lazy" />
+                <Photo src={person.photo} alt={person.name} className="img-cover group-hover:scale-[1.04] transition-transform duration-700" sizes="(max-width: 640px) 100vw, 33vw" quality={64} />
               </div>
               <h3 className="text-[21px] font-medium mt-4">{person.name}</h3>
               <p className="text-[14px] text-[#665b52]">{person.role}</p>

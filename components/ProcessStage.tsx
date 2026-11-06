@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Photo from "@/components/Photo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,14 +36,16 @@ export default function ProcessStage() {
     <div ref={ref} className="lg:sticky lg:top-24 self-start">
       <div className="relative overflow-hidden aspect-square bg-[#ded7cc]">
         {stages.map((item, i) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            key={item.src}
-            src={item.src}
-            alt=""
-            className="img-cover absolute inset-0 transition-opacity duration-700"
-            style={{ opacity: i === active ? 1 : 0 }}
-          />
+          Math.abs(i - active) > 1 ? null : (
+            <Photo
+              key={item.src}
+              src={item.src}
+              alt={item.name}
+              className="img-cover transition-opacity duration-700"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              style={{ opacity: i === active ? 1 : 0 }}
+            />
+          )
         ))}
       </div>
       <p className="mt-4 text-[13px] text-[#665b52]">{stage.kicker}</p>

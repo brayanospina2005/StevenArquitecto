@@ -52,7 +52,7 @@ export default function SiteFooter() {
 
         <div className="flex items-start gap-4 md:gap-6 select-none" aria-hidden>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/datum/vW55VmO8YczY7gyuVCEY7bFmOg.svg" alt="" className="w-[clamp(36px,6vw,90px)] mt-[clamp(10px,2vw,28px)] invert opacity-90" />
+          <img src="/brand/logo-light.webp" alt="" width={167} height={137} loading="lazy" decoding="async" className="w-[clamp(72px,10vw,160px)] h-auto mt-[clamp(8px,1.5vw,20px)]" />
           <span className="display font-medium leading-[0.85] tracking-[-0.045em] text-[clamp(42px,7vw,132px)]">Bi ARQ 1.0</span>
         </div>
 

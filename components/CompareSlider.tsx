@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
+import Photo from "@/components/Photo";
 
 export default function CompareSlider({ drawing, built, caption }: { drawing: string; built: string; caption: string }) {
   const [pos, setPos] = useState(50);
@@ -21,13 +22,11 @@ export default function CompareSlider({ drawing, built, caption }: { drawing: st
         onPointerMove={(e) => dragging.current && update(e.clientX)}
         onPointerUp={() => { dragging.current = false; }}
         onPointerLeave={() => { dragging.current = false; }}
-        role="slider" aria-label="Compare drawing and built" aria-valuenow={Math.round(pos)} tabIndex={0}
+        role="slider" aria-label="Comparar dibujo y obra construida" aria-valuenow={Math.round(pos)} tabIndex={0}
         onKeyDown={(e) => { if (e.key === "ArrowLeft") setPos((p) => Math.max(4, p - 4)); if (e.key === "ArrowRight") setPos((p) => Math.min(96, p + 4)); }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={built} alt="Construido" className="img-cover absolute inset-0" draggable={false} />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={drawing} alt="Dibujo" className="img-cover absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }} draggable={false} />
+        <Photo src={built} alt="Construido" className="img-cover" sizes="(max-width: 1024px) 100vw, 80vw" />
+        <Photo src={drawing} alt="Dibujo" className="img-cover" sizes="(max-width: 1024px) 100vw, 80vw" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }} />
         <span className="absolute top-4 left-4 bg-[#eeeae3]/90 px-3 py-1.5 text-[12px] font-medium rounded-[3px]">Dibujo</span>
         <span className="absolute top-4 right-4 bg-[#2b1f18]/85 text-[#eeeae3] px-3 py-1.5 text-[12px] font-medium rounded-[3px]">Construido</span>
         <div className="absolute top-0 bottom-0 w-px bg-[#eeeae3] shadow-[0_0_0_1px_rgba(0,0,0,0.15)]" style={{ left: `${pos}%` }}>

@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects, IM } from "@/lib/data";
 import { SlatsImage } from "@/components/Reveal";
+import Photo from "@/components/Photo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,8 +27,7 @@ export function Hero() {
 
   return (
     <section ref={ref} className="relative min-h-[calc(100svh-72px)] flex flex-col overflow-hidden bg-[#2b1f18] text-white">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={IM.hero} alt="Low limewash and travertine house with a deep flat roof and an old olive tree among dry grasses at golden hour" className="hero-img img-cover absolute inset-0" />
+      <Photo src={IM.hero} alt="Casa de cal y travertino con cubierta plana y un olivo al atardecer" className="hero-img img-cover" sizes="100vw" priority quality={64} />
       <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-transparent" />
       <div className="relative flex-1 flex flex-col mx-auto max-w-[1600px] w-full px-5 md:px-10 pt-5 pb-7">
         <div className="hero-line grid grid-cols-2 md:grid-cols-3 gap-4 text-[13px] text-white/90 border-b border-white/30 pb-4">
@@ -166,7 +166,7 @@ export function IndexList({ dark = false }: { dark?: boolean }) {
       >
         {hover !== null && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={list[hover].cover} alt="" className="img-cover" />
+          <Photo src={list[hover].cover} alt="" className="img-cover" sizes="220px" quality={60} />
         )}
       </div>
     </div>

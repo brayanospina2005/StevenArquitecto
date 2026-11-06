@@ -53,7 +53,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </Reveal>
       </section>
 
-      <SlatsImage src={p.cover} alt={p.name} ratio="aspect-[16/9]" />
+      <SlatsImage src={p.cover} alt={p.name} ratio="aspect-[16/9]" sizes="100vw" priority />
 
       {/* Story */}
       <section className="grid lg:grid-cols-12 gap-10 py-20 md:py-28">

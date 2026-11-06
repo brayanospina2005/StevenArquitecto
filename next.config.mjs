@@ -4,7 +4,10 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
+    deviceSizes: [640, 828, 1080, 1280, 1600, 1920],
+    imageSizes: [64, 128, 220, 300, 384, 480],
   },
 }
 

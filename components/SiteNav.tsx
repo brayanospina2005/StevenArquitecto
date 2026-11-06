@@ -23,9 +23,9 @@ export default function SiteNav() {
     <>
       <header className="fixed top-0 inset-x-0 z-50 bg-[#eeeae3] border-b border-[#cec5b8]">
         <div className="mx-auto max-w-[1600px] px-5 md:px-10 h-[72px] flex items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="Inicio de Bi ARQ 1.0">
+          <Link href="/" className="flex items-center gap-3 shrink-0" aria-label="Inicio de Bi ARQ 1.0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/datum/GkFCVwmp5jRPwKARJruSI1CXsSI.svg" alt="" className="w-[22px] h-[22px]" />
+            <img src="/brand/logo.webp" alt="" width={167} height={137} className="h-10 w-auto" />
             <span className="text-[18px] md:text-[20px] font-medium tracking-tight text-[#1c1714] leading-none">Bi ARQ 1.0</span>
           </Link>
           <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">

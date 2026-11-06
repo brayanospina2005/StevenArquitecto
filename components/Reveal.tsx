@@ -2,6 +2,7 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Photo from "@/components/Photo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,7 +22,7 @@ export function Reveal({ children, delay = 0, className, y = 36 }: { children: R
   return <div ref={ref} className={className}>{children}</div>;
 }
 
-export function SlatsImage({ src, alt, className = "", ratio = "aspect-[4/3]" }: { src: string; alt: string; className?: string; ratio?: string }) {
+export function SlatsImage({ src, alt, className = "", ratio = "aspect-[4/3]", sizes, priority = false }: { src: string; alt: string; className?: string; ratio?: string; sizes?: string; priority?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
@@ -40,8 +41,7 @@ export function SlatsImage({ src, alt, className = "", ratio = "aspect-[4/3]" }:
   }, []);
   return (
     <div ref={ref} className={`relative overflow-hidden bg-[#ded7cc] ${ratio} ${className}`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt} className="img-cover absolute inset-0" loading="lazy" />
+      <Photo src={src} alt={alt} className="img-cover" sizes={sizes} priority={priority} />
       <div className="absolute inset-0 grid grid-cols-5 pointer-events-none">
         {Array.from({ length: 5 }).map((_, i) => (
           <div key={i} className="slat bg-[#eeeae3] origin-top" />
