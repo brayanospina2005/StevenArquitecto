@@ -94,6 +94,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <SlatsImage src={p.gallery[3]} alt={`Galería de ${p.name}`} ratio="aspect-[16/10]" />
             <SlatsImage src={p.gallery[4]} alt={`Galería de ${p.name}`} ratio="aspect-[16/10]" />
           </div>
+          {p.gallery.length > 5 && (
+            <div className="grid md:grid-cols-2 gap-5 mt-5">
+              {p.gallery.slice(5).map((src) => (
+                <SlatsImage key={src} src={src} alt={`Galería de ${p.name}`} ratio="aspect-[3/4]" />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

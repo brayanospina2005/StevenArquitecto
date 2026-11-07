@@ -61,7 +61,7 @@ export default function Home() {
             </div>
             <div className="lg:col-span-8 relative">
               <Link href={`/projects/${featured.slug}`} className="block">
-                <SlatsImage src={featured.cover} alt="Casa patio de cal blanca alrededor de un olivo viejo" ratio="aspect-[4/5] md:aspect-[5/4]" sizes="(max-width: 1024px) 100vw, 60vw" />
+                <SlatsImage src={featured.cover} alt={featured.name} ratio="aspect-[4/5] md:aspect-[5/4]" sizes="(max-width: 1024px) 100vw, 60vw" />
               </Link>
               <div className="bg-[#eeeae3] text-[#1c1714] p-6 md:p-7 md:absolute md:right-5 md:bottom-5 md:w-[340px] shadow-[0_16px_40px_rgba(0,0,0,0.12)]">
                 <h3 className="text-[26px] font-medium tracking-tight mb-4">{featured.name}</h3>
