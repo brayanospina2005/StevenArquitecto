@@ -3,11 +3,12 @@
 import { useState } from "react";
 
 const faqs = [
-  { q: "¿Cuánto cuesta un proyecto?", a: "Nuestros honorarios suelen ser del 10 al 15 por ciento del coste de obra en el servicio completo, y una tarifa fija para interiores y consultas. Compartimos un presupuesto claro después de la primera visita." },
-  { q: "¿Trabajáis fuera de Portugal y Dinamarca?", a: "Sí, de forma selectiva. La mayor parte del trabajo está cerca de los dos estudios, pero aceptamos unos pocos proyectos en otros lugares de Europa cuando podemos visitar la obra con regularidad." },
-  { q: "¿Podéis trabajar con nuestro constructor?", a: "Sí. A menudo trabajamos con el constructor del cliente y estamos en obra cada semana para revisar juntos detalles, muestras y presupuesto." },
-  { q: "¿Cuánto tarda la licencia?", a: "Depende del municipio. En Lisboa y Copenhague una solicitud sencilla suele tardar de tres a seis meses; te damos un plazo realista después de la fase de concepto." },
-  { q: "¿Qué necesitáis de nosotros para empezar?", a: "Un solar o un edificio, y una conversación. Trae los planos, las fotos o las referencias que tengas: la primera visita es gratuita y no hay un mal lugar por donde empezar." },
+  { q: "¿Qué servicios ofrece Bi Arq 1.0?", a: "Diseño de interiores, remodelación de apartamentos y de casas, diseño de cocinas y de baños, iluminación arquitectónica, mobiliario personalizado, renderizado 3D, supervisión de obra y asesoría en materiales." },
+  { q: "¿Cómo es el proceso de trabajo?", a: "Reunión con el cliente, levantamiento del espacio, diseño 3D, selección de materiales, presupuesto, ejecución y entrega final." },
+  { q: "¿Puedo ver mi proyecto antes de la obra?", a: "Sí. Con los renderizados 3D visualizas tu proyecto antes de hacerlo realidad, con imágenes realistas que te permiten tomar decisiones con confianza." },
+  { q: "¿Qué materiales utilizan?", a: "Trabajamos con materiales de alta calidad y proveedores de confianza para garantizar acabados duraderos y sofisticados." },
+  { q: "¿Por qué elegir Bi Arq 1.0?", a: "Diseños personalizados, materiales de alta calidad, acompañamiento completo, atención al detalle y entrega profesional." },
+  { q: "¿Dónde están y cómo los contacto?", a: "Estamos en Bogotá, Colombia. Escríbenos a creacionesdeinterioresbiarq@gmail.com o llámanos al 319 282 0726. Instagram: @Biarq1.0. TikTok: @Bi.Arq.1.0." },
 ];
 
 export default function FaqList() {

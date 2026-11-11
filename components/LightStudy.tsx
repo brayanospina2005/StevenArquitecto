@@ -6,7 +6,7 @@ import { LIGHT_FRAG, LIGHT_VERT } from "./lightStudyShader";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const stages = ["Boceto", "Maqueta", "Materiales", "Luz"];
+const stages = ["Levantamiento", "Diseño 3D", "Materiales", "Entrega"];
 
 function hex(h: string): [number, number, number] {
   const n = parseInt(h.slice(1), 16);
@@ -226,12 +226,12 @@ export default function LightStudy() {
       <div className="sticky top-[72px] h-[calc(100svh-72px)] overflow-hidden">
         <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden />
         <div className="relative z-10 flex h-full flex-col mx-auto max-w-[1600px] px-5 md:px-10 pt-8 pb-8 pointer-events-none">
-          <p className="label text-[#665b52] mb-4">Estudio de luz</p>
+          <p className="label text-[#665b52] mb-4">Nuestro proceso de trabajo</p>
           <h2 className="display text-[clamp(40px,5vw,72px)] max-w-[560px] mb-5">
-            Del primer boceto a la luz de la tarde.
+            Del levantamiento del espacio al diseño 3D.
           </h2>
           <p className="text-[16px] leading-relaxed text-[#4b3b31] max-w-[420px]">
-            Toda casa empieza como un boceto a lápiz. Desplázate y mírala convertirse en maqueta, tomar madera, vidrio y agua, y recoger el sol de la tarde.
+            Visualiza tu proyecto antes de hacerlo realidad. Desplázate y mira cómo el espacio pasa del levantamiento al diseño, toma materiales y llega a la entrega final.
           </p>
           <div className="mt-auto px-0 md:px-2">
             <ol className="flex flex-wrap gap-x-7 gap-y-2 text-[13px] mb-3.5">

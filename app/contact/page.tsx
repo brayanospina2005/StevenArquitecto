@@ -1,11 +1,9 @@
 "use client";
 import { useState } from "react";
 import { Reveal, SlatsImage } from "@/components/Reveal";
-import { IM } from "@/lib/data";
+import { site, IM } from "@/lib/data";
 
-const types = ["Casa nueva", "Rehabilitación", "Interior", "Hostelería", "Oficinas", "Otra cosa"];
-const budgets = ["Aún no lo sé", "Menos de 250 mil", "250 mil a 750 mil", "750 mil a 2 millones", "Más de 2 millones"];
-const timelines = ["Cuanto antes", "En seis meses", "En un año", "Solo explorando"];
+const types = ["Diseño de interiores", "Remodelación de apartamento", "Remodelación de casa", "Diseño de cocina", "Diseño de baño", "Oficinas", "Renderizado 3D", "Otro"];
 
 function Chips({ options, value, onChange, label }: { options: string[]; value: string; onChange: (v: string) => void; label: string }) {
   return (
@@ -28,8 +26,6 @@ const inputCls = "w-full bg-transparent border border-[#cec5b8] rounded-[4px] px
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", location: "", message: "" });
   const [type, setType] = useState(types[0]);
-  const [budget, setBudget] = useState(budgets[0]);
-  const [timeline, setTimeline] = useState(timelines[0]);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(false);
 
@@ -44,9 +40,9 @@ export default function ContactPage() {
       <section className="py-16 md:py-24">
         <Reveal>
           <p className="label text-[#665b52] mb-5">Empezar un proyecto</p>
-          <h1 className="display text-[clamp(42px,7vw,100px)] mb-8 max-w-[900px]">Cuéntanos tu solar, una estructura o un boceto.</h1>
+          <h1 className="display text-[clamp(42px,7vw,100px)] mb-8 max-w-[900px]">Cuéntanos tu espacio.</h1>
           <p className="text-[18px] leading-relaxed text-[#4b3b31] max-w-[620px]">
-            Respondemos en dos días laborables. La primera conversación es gratuita y no hay un mal lugar por donde empezar: una parcela, un edificio antiguo o una sola estancia.
+            Todo empieza con una reunión con el cliente. {site.philosophy}
           </p>
         </Reveal>
       </section>
@@ -56,11 +52,12 @@ export default function ContactPage() {
           <Reveal>
             <dl className="mb-10">
               {[
-                ["Correo", <a key="e" href="mailto:hola@biarq.com" className="link-line font-medium">hola@biarq.com</a>],
-                ["Teléfono", <a key="p" href="tel:+351213405120" className="link-line">+351 21 340 5120</a>],
-                ["Lisboa", "Rua das Flores 28, 1200-195 Lisboa"],
-                ["Copenhague", "Bredgade 36, 1260 Copenhague"],
-                ["Horario", "Lunes a viernes, de 9:00 a 18:00"],
+                ["Correo", <a key="e" href={`mailto:${site.email}`} className="link-line font-medium break-all">{site.email}</a>],
+                ["Teléfono", <a key="p" href={site.phoneHref} className="link-line">{site.phoneIntl}</a>],
+                ["WhatsApp", <a key="w" href={site.whatsapp} target="_blank" rel="noreferrer" className="link-line">{site.phoneDisplay}</a>],
+                ["Instagram", <a key="i" href={site.instagram} target="_blank" rel="noreferrer" className="link-line">@{site.instagramHandle}</a>],
+                ["TikTok", <a key="t" href={site.tiktok} target="_blank" rel="noreferrer" className="link-line">@{site.tiktokHandle}</a>],
+                ["Ciudad", site.city],
               ].map(([k, v]) => (
                 <div key={k as string} className="grid grid-cols-[120px_1fr] gap-4 py-4 border-t border-[#cec5b8] text-[15px]">
                   <dt className="text-[#665b52]">{k}</dt><dd>{v}</dd>
@@ -69,8 +66,8 @@ export default function ContactPage() {
             </dl>
           </Reveal>
           <Reveal delay={0.1}>
-            <SlatsImage src={IM.contactStudio} alt="Nuestro estudio de Lisboa en Rua das Flores" ratio="aspect-[4/3]" />
-            <p className="text-[13px] text-[#665b52] pt-4">Nuestro estudio de Lisboa, en Rua das Flores. Visitas con cita.</p>
+            <SlatsImage src={IM.contactStudio} alt="Bi Arq 1.0 en Bogotá, Colombia" ratio="aspect-[4/3]" />
+            <p className="text-[13px] text-[#665b52] pt-4">Bi Arq 1.0, {site.city}. {site.tagline}.</p>
           </Reveal>
         </div>
 
@@ -80,7 +77,7 @@ export default function ContactPage() {
               <div className="border border-[#cec5b8] bg-[#ded7cc]/50 p-10 md:p-14">
                 <p className="label text-[#b83d1c] mb-4">Consulta de proyecto</p>
                 <h2 className="display text-[36px] md:text-[44px] mb-4">Gracias, {form.name.split(" ")[0]}.</h2>
-                <p className="text-[16px] text-[#4b3b31] max-w-[480px]">Tenemos tu consulta sobre un proyecto de {type.toLowerCase()} y responderemos en dos días laborables.</p>
+                <p className="text-[16px] text-[#4b3b31] max-w-[480px]">Tenemos tu consulta sobre {type.toLowerCase()}. También puedes escribirnos a {site.email} o llamarnos al {site.phoneIntl}.</p>
               </div>
             ) : (
               <form onSubmit={submit} noValidate className="border border-[#cec5b8] p-6 md:p-10">
@@ -96,21 +93,19 @@ export default function ContactPage() {
                   </label>
                   <label className="block">
                     <span className="text-[13px] font-medium text-[#665b52] block mb-2">Teléfono</span>
-                    <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputCls} placeholder="+351 …" />
+                    <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputCls} placeholder="+57 …" />
                   </label>
                   <label className="block">
                     <span className="text-[13px] font-medium text-[#665b52] block mb-2">Lugar del proyecto</span>
-                    <input value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} className={inputCls} placeholder="Ciudad, país" />
+                    <input value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} className={inputCls} placeholder="Bogotá, Colombia" />
                   </label>
                 </div>
                 <div className="space-y-7 mb-7">
                   <Chips label="Tipo de proyecto" options={types} value={type} onChange={setType} />
-                  <Chips label="Presupuesto" options={budgets} value={budget} onChange={setBudget} />
-                  <Chips label="Plazo" options={timelines} value={timeline} onChange={setTimeline} />
                 </div>
                 <label className="block mb-6">
                   <span className="text-[13px] font-medium text-[#665b52] block mb-2">Mensaje *</span>
-                  <textarea required rows={6} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={inputCls} placeholder="Cuéntanos el solar, las estancias o el boceto…" />
+                  <textarea required rows={6} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={inputCls} placeholder="Cuéntanos tu espacio, tu estilo y lo que necesitas…" />
                 </label>
                 {error && <p className="text-[14px] text-[#b83d1c] mb-4">Completa los campos obligatorios</p>}
                 <div className="flex flex-wrap items-center justify-between gap-4">

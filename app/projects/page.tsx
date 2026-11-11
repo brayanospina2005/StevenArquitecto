@@ -2,11 +2,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Reveal, SlatsImage } from "@/components/Reveal";
 import { projects } from "@/lib/data";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Proyectos | Bi ARQ 1.0",
-  description: "Ocho proyectos entre casas, hoteles, lugares de trabajo y espacios públicos, de 2019 a 2025.",
-};
+export const metadata: Metadata = pageMeta({
+  title: "Proyectos",
+  description:
+    "Tres remodelaciones de apartamento en Bogotá: cocinas, baños, salas, habitaciones y espacios sociales, del levantamiento a la entrega.",
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (
@@ -14,9 +17,9 @@ export default function ProjectsPage() {
       <section className="py-16 md:py-24">
         <Reveal>
           <p className="label text-[#665b52] mb-5">Proyectos</p>
-          <h1 className="display text-[clamp(48px,8vw,120px)] mb-8">Obra construida, 2019 a 2025.</h1>
+          <h1 className="display text-[clamp(48px,8vw,120px)] mb-8">Remodelaciones de interiores.</h1>
           <p className="text-[18px] leading-relaxed text-[#4b3b31] max-w-[620px]">
-            Ocho proyectos entre casas, hoteles, lugares de trabajo y espacios públicos. Cada uno empezó con una visita, un boceto y una conversación larga sobre la luz.
+            Creemos que cada espacio tiene el potencial de inspirar. Diseñamos con propósito, cuidando cada detalle para lograr ambientes que reflejen tu estilo, necesidades y personalidad.
           </p>
         </Reveal>
       </section>
@@ -28,7 +31,7 @@ export default function ProjectsPage() {
               <SlatsImage src={p.cover} alt={p.name} ratio="aspect-[4/3]" className="group-hover:[&_img]:scale-[1.03] [&_img]:transition-transform [&_img]:duration-700" />
               <div className="flex items-baseline gap-4 pt-5 text-[13px] text-[#665b52]">
                 <span className="font-medium text-[#b83d1c]">{p.index}</span>
-                <span>{p.typology}</span><span>{p.location}</span><span>{p.year}</span>
+                <span>{p.typology}</span><span>{p.location}</span>
               </div>
               <h2 className="text-[28px] md:text-[34px] font-light tracking-tight mt-2 group-hover:translate-x-1 transition-transform">{p.name}</h2>
             </Link>
@@ -44,13 +47,12 @@ export default function ProjectsPage() {
         <div>
           {projects.map((p) => (
             <Link key={p.slug} href={`/projects/${p.slug}`}
-              className="group grid grid-cols-[auto_1fr_auto] md:grid-cols-[60px_1fr_160px_80px_140px_100px] items-baseline gap-4 py-5 border-t border-[#cec5b8] hover:bg-[#ded7cc]/60 transition-colors px-2 -mx-2">
+              className="group grid grid-cols-[auto_1fr_auto] md:grid-cols-[60px_1fr_200px_220px_100px] items-baseline gap-4 py-5 border-t border-[#cec5b8] hover:bg-[#ded7cc]/60 transition-colors px-2 -mx-2">
               <span className="text-[14px] text-[#665b52]">{p.index}</span>
               <span className="text-[20px] md:text-[26px] font-light tracking-tight group-hover:translate-x-2 transition-transform">{p.name}</span>
               <span className="hidden md:block text-[14px] text-[#665b52]">{p.location}</span>
-              <span className="hidden md:block text-[14px] text-[#665b52]">{p.year}</span>
               <span className="hidden md:block text-[14px] text-[#665b52]">{p.typology}</span>
-              <span className="text-[14px] text-[#665b52] text-right">{p.area}</span>
+              <span className="text-[14px] text-[#665b52] text-right">{p.gallery.length + 1} fotos</span>
             </Link>
           ))}
         </div>

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Reveal, SlatsImage } from "@/components/Reveal";
 import CompareSlider from "@/components/CompareSlider";
 import { projects, IM } from "@/lib/data";
+import { pageMeta } from "@/lib/seo";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -12,7 +13,18 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const p = projects.find((x) => x.slug === slug);
-  return { title: p ? `${p.name} | Bi ARQ 1.0` : "Proyecto | Bi ARQ 1.0", description: p?.summary };
+  if (!p) return { title: "Proyecto" };
+  return pageMeta({
+    title: p.name,
+    description: `${p.summary} Remodelación de Bi Arq 1.0 en ${p.location}.`,
+    path: `/projects/${p.slug}`,
+    image: {
+      url: `/og/apartamento-${p.index}.jpg`,
+      width: 1200,
+      height: 630,
+      alt: `${p.name}, ${p.typology.toLowerCase()} en ${p.location}`,
+    },
+  });
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -28,7 +40,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     { n: "03", title: "El resultado", text: p.outcome },
   ];
   const facts: [string, string][] = [
-    ["Cliente", p.client], ["Duración", p.duration], ["Equipo", p.team], ["Materiales", p.materials], ["Fotografía", "Fotografía del estudio"],
+    ["Servicios", p.services], ["Proceso", "Reunión con el cliente, levantamiento del espacio, diseño 3D, selección de materiales, presupuesto, ejecución y entrega final"], ["Materiales", p.materials], ["Ubicación", p.location],
   ];
 
   return (
@@ -43,7 +55,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <h1 className="display text-[clamp(44px,7.5vw,110px)] mb-6">{p.name}</h1>
           <p className="text-[20px] md:text-[24px] font-light leading-snug max-w-[640px] mb-12">{p.summary}</p>
           <dl className="grid grid-cols-2 md:grid-cols-4 border-t border-b border-[#cec5b8]">
-            {[["Lugar", p.location], ["Año", p.year], ["Superficie", p.area], ["Estado", "Terminado"]].map(([k, v]) => (
+            {[["Lugar", p.location], ["Tipo", p.typology], ["Estado", "Terminado"], ["Galería", `${p.gallery.length + 1} fotos`]].map(([k, v]) => (
               <div key={k} className="py-5 pr-6">
                 <dt className="text-[12px] uppercase tracking-wide text-[#665b52]">{k}</dt>
                 <dd className="font-medium mt-1.5">{v}</dd>
@@ -107,10 +119,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       {/* Drawing to built */}
       <section className="py-16 md:py-24 border-t border-[#cec5b8]">
         <Reveal>
-          <p className="label text-[#665b52] mb-4">Del dibujo a la obra</p>
-          <h2 className="display text-[36px] md:text-[48px] mb-10">La sección que dibujamos y la estancia que se construyó.</h2>
+          <p className="label text-[#665b52] mb-4">Renderizados 3D</p>
+          <h2 className="display text-[36px] md:text-[48px] mb-10">Visualiza tu proyecto antes de hacerlo realidad.</h2>
         </Reveal>
-        <CompareSlider drawing={IM.drawing} built={p.gallery[2]} caption={`${p.name}, ${p.year}`} />
+        <CompareSlider drawing={IM.drawing} built={p.gallery[2]} caption={`${p.name}, ${p.location}`} />
       </section>
 
       {/* Next project */}
@@ -124,7 +136,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <div>
               <h2 className="display text-[clamp(40px,6vw,84px)] group-hover:translate-x-2 transition-transform mb-8">{next.name}</h2>
               <dl className="grid grid-cols-3 gap-6 text-[14px] max-w-[480px] mb-8">
-                {[["Tipo", next.typology], ["Lugar", next.location], ["Año", next.year]].map(([k, v]) => (
+                {[["Tipo", next.typology], ["Lugar", next.location], ["Galería", `${next.gallery.length + 1} fotos`]].map(([k, v]) => (
                   <div key={k}><dt className="text-[#665b52] text-[12px] uppercase tracking-wide">{k}</dt><dd className="font-medium mt-1">{v}</dd></div>
                 ))}
               </dl>

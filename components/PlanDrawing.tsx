@@ -11,9 +11,9 @@ const accent = "#E2522B";
 const muted = "#7D7167";
 const paper = "#EEEAE3";
 const notes = [
-  "El sol de la mañana llega primero a la cocina",
-  "Todas las estancias abren al patio",
-  "El olivo viejo se queda donde creció",
+  "Reunión con el cliente y levantamiento del espacio",
+  "Diseño 3D antes de la ejecución",
+  "Selección de materiales de alta calidad",
 ];
 const steps = ["Muros", "Huecos", "Cotas", "Mobiliario", "Notas"];
 
@@ -55,7 +55,7 @@ export default function PlanDrawing() {
   return (
     <div ref={wrapRef} style={{ height: "240vh" }}>
       <div className="sticky top-[88px] flex flex-col gap-5">
-        <svg viewBox="4 4 1006 700" className="w-full h-[min(68vh,760px)] overflow-visible" role="img" aria-label="Floor plan of Casa Alba Residence drawing itself as you scroll">
+        <svg viewBox="4 4 1006 700" className="w-full h-[min(68vh,760px)] overflow-visible" role="img" aria-label="Plano de un proyecto de Bi Arq 1.0 que se dibuja al desplazarse">
           <g opacity={grid} fill="none" stroke={muted} strokeWidth={0.8}>
             {plan.jt.map((g) => (
               <g key={g.k}>
@@ -149,7 +149,7 @@ export default function PlanDrawing() {
             <circle cx={950} cy={680} r={16} />
             <path d="M950 662 l-7 24 l7 -6 l7 6 z" fill={ink} />
             <text x={976} y={684} fill={ink} stroke="none" fontSize={12} fontFamily="Switzer, sans-serif">N</text>
-            <text x={100} y={694} fill={muted} stroke="none" fontSize={12} fontFamily="Switzer, sans-serif">Casa Alba, planta baja, 1:100</text>
+            <text x={100} y={694} fill={muted} stroke="none" fontSize={12} fontFamily="Switzer, sans-serif">Bi Arq 1.0, diseño de interiores, 1:100</text>
           </g>
         </svg>
 

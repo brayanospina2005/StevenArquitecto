@@ -7,11 +7,11 @@ import Photo from "@/components/Photo";
 gsap.registerPlugin(ScrollTrigger);
 
 const stages = [
-  { src: "/datum/xTqAEw6ptJPPosL9Z6UVYWARZTc.jpg", kicker: "Etapa 01", name: "Boceto en papel vegetal" },
-  { src: "/datum/Pq0a4Ss1p8LsbqpiovXlxIKQ.jpg", kicker: "Etapa 02", name: "Maqueta de cartón sobre la mesa" },
-  { src: "/datum/mLWr4P3AyFpkGBRTJ5KLCi7Q6dI.jpg", kicker: "Etapa 03", name: "Juego de planos de obra" },
-  { src: "/datum/LuxUS8V4dAp6ZBC1qcnM2sUofWE.jpg", kicker: "Etapa 04", name: "Encofrado y primeros muros" },
-  { src: "/datum/w6IPGtI8bSTouqYEk17QeIxSWPY.jpg", kicker: "Etapa 05", name: "La casa terminada" },
+  { src: "/datum/xTqAEw6ptJPPosL9Z6UVYWARZTc.jpg", kicker: "Etapa 02", name: "Levantamiento del espacio" },
+  { src: "/datum/Pq0a4Ss1p8LsbqpiovXlxIKQ.jpg", kicker: "Etapa 03", name: "Diseño 3D" },
+  { src: "/datum/mLWr4P3AyFpkGBRTJ5KLCi7Q6dI.jpg", kicker: "Etapa 04", name: "Selección de materiales" },
+  { src: "/datum/LuxUS8V4dAp6ZBC1qcnM2sUofWE.jpg", kicker: "Etapa 06", name: "Ejecución" },
+  { src: "/datum/w6IPGtI8bSTouqYEk17QeIxSWPY.jpg", kicker: "Etapa 07", name: "Entrega final" },
 ];
 
 export default function ProcessStage() {

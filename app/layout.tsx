@@ -4,6 +4,8 @@ import "./globals.css";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import SmoothScroll from "@/components/SmoothScroll";
+import { site } from "@/lib/data";
+import { defaultDescription, jsonLd, ogImage, siteUrl } from "@/lib/seo";
 
 const switzer = localFont({
   src: [
@@ -17,8 +19,48 @@ const switzer = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Bi ARQ 1.0 | Estudio de arquitectura e interiorismo",
-  description: "Casas, hoteles y lugares de trabajo serenos, hechos de luz, proporción y materiales que duran. Conoce el trabajo de Bi ARQ 1.0 y empieza el tuyo.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Bi Arq 1.0 | Diseño, arquitectura y remodelación en Bogotá",
+    template: "%s | Bi Arq 1.0",
+  },
+  description: defaultDescription,
+  applicationName: site.name,
+  authors: [{ name: site.name, url: siteUrl }],
+  creator: site.name,
+  publisher: site.name,
+  category: "Diseño de interiores",
+  keywords: [
+    "Bi Arq 1.0",
+    "diseño de interiores Bogotá",
+    "remodelación de apartamentos",
+    "remodelación de casas",
+    "diseño de cocinas",
+    "diseño de baños",
+    "iluminación arquitectónica",
+    "renderizado 3D",
+  ],
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_CO",
+    url: "/",
+    siteName: site.name,
+    title: "Bi Arq 1.0 | Diseño, arquitectura y remodelación en Bogotá",
+    description: defaultDescription,
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bi Arq 1.0 | Diseño, arquitectura y remodelación en Bogotá",
+    description: defaultDescription,
+    images: [ogImage.url],
+  },
   icons: { icon: "/brand/icon.png", apple: "/brand/icon.png" },
 };
 
@@ -26,6 +68,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="es" className={`${switzer.variable} ${switzer.className}`}>
       <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()) }} />
         <SmoothScroll />
         <SiteNav />
         <main>{children}</main>
