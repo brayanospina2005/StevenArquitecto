@@ -39,7 +39,10 @@ export default function PlanDrawing() {
       trigger: el,
       start: "top top",
       end: "bottom bottom",
-      onUpdate: (self) => setY(self.progress),
+      onUpdate: (self) => {
+        const next = Math.round(self.progress * 240) / 240;
+        setY((prev) => (Math.abs(next - prev) < 0.001 ? prev : next));
+      },
     });
     return () => st.kill();
   }, []);

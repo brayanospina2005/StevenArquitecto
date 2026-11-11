@@ -10,6 +10,8 @@ uniform float uCam;
 uniform float uShift;
 uniform float uShiftY;
 uniform float uZoom;
+uniform int uRaySteps;
+uniform int uShadowSteps;
 uniform vec3 uBg;
 uniform vec3 uGroundCol;
 uniform vec3 uConcrete;
@@ -160,6 +162,7 @@ vec3 calcN(vec3 p){
 float softShadow(vec3 ro, vec3 rd){
   float res = 1.0; float t = 0.02; float m; float e;
   for(int i=0;i<48;i++){
+    if(i>=uShadowSteps) break;
     float h = building(ro+rd*t, m, e);
     res = min(res, 9.0*h/t);
     t += clamp(h, 0.012, 0.2);
@@ -193,6 +196,7 @@ void main(){
   float t = 0.3; bool hit = false;
   float minB = 1e3; float minT = 0.0;
   for(int i=0;i<130;i++){
+    if(i>=uRaySteps) break;
     vec3 q = ro+rd*t;
     float d = map(q);
     if(gB < minB){ minB = gB; minT = t; }

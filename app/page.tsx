@@ -1,14 +1,9 @@
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Reveal, SlatsImage } from "@/components/Reveal";
 import { Hero, Stats, IndexList } from "@/components/HomeSections";
+import { LazyCompareSlider, LazyLightStudy, LazyPlanDrawing, LazyProcessStage } from "@/components/LazySections";
 import Photo from "@/components/Photo";
 import { projects, materialSwatches, processSteps, site, whyUs, IM } from "@/lib/data";
-
-const LightStudy = dynamic(() => import("@/components/LightStudy"));
-const PlanDrawing = dynamic(() => import("@/components/PlanDrawing"));
-const ProcessStage = dynamic(() => import("@/components/ProcessStage"));
-const CompareSlider = dynamic(() => import("@/components/CompareSlider"));
 
 const featured = projects[0];
 
@@ -25,7 +20,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <LightStudy />
+      <LazyLightStudy />
       <Stats />
 
       {/* Selected work */}
@@ -94,7 +89,7 @@ export default function Home() {
             </Reveal>
           </div>
           <div className="lg:col-span-8">
-            <PlanDrawing />
+            <LazyPlanDrawing />
           </div>
         </div>
       </section>
@@ -110,7 +105,7 @@ export default function Home() {
             </p>
           </div>
         </Reveal>
-        <CompareSlider drawing={IM.drawing} built={IM.built} caption="Antes y después, Bi Arq 1.0" />
+        <LazyCompareSlider drawing={IM.drawing} built={IM.built} caption="Antes y después, Bi Arq 1.0" />
       </section>
 
       {/* Disciplines */}
@@ -144,7 +139,7 @@ export default function Home() {
       {/* Process */}
       <section className="mx-auto max-w-[1600px] px-5 md:px-10 py-20 md:py-28 border-t border-[#cec5b8]">
         <div className="grid lg:grid-cols-2 gap-12">
-          <ProcessStage />
+          <LazyProcessStage />
           <div>
             <Reveal>
               <p className="label text-[#665b52] mb-4">Cómo trabajamos</p>

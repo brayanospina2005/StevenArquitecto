@@ -4,6 +4,7 @@ import "./globals.css";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import SmoothScroll from "@/components/SmoothScroll";
+import PageTransition from "@/components/PageTransition";
 import { site } from "@/lib/data";
 import { defaultDescription, jsonLd, ogImage, siteUrl } from "@/lib/seo";
 
@@ -71,7 +72,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()) }} />
         <SmoothScroll />
         <SiteNav />
-        <main>{children}</main>
+        <main><PageTransition>{children}</PageTransition></main>
         <SiteFooter />
       </body>
     </html>
