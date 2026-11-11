@@ -38,6 +38,32 @@ export const whyUs = [
   "Entrega profesional",
 ];
 
+export const serviceNames = [
+  "Diseño de interiores",
+  "Remodelación de apartamentos",
+  "Remodelación de casas",
+  "Diseño de cocinas",
+  "Diseño de baños",
+  "Iluminación arquitectónica",
+  "Mobiliario personalizado",
+  "Renderizado 3D",
+  "Supervisión de obra",
+  "Asesoría en materiales",
+];
+
+export const faqs = [
+  { q: "¿Qué servicios ofrece Bi Arq 1.0?", a: "Diseño de interiores, remodelación de apartamentos y de casas, diseño de cocinas y de baños, iluminación arquitectónica, mobiliario personalizado, renderizado 3D, supervisión de obra y asesoría en materiales." },
+  { q: "¿Cómo es el proceso de trabajo?", a: "Reunión con el cliente, levantamiento del espacio, diseño 3D, selección de materiales, presupuesto, ejecución y entrega final." },
+  { q: "¿Puedo ver mi proyecto antes de la obra?", a: "Sí. Con los renderizados 3D visualizas tu proyecto antes de hacerlo realidad, con imágenes realistas que te permiten tomar decisiones con confianza." },
+  { q: "¿Cuánto cuesta remodelar un apartamento?", a: "Cada proyecto es distinto: la inversión depende del tamaño del espacio, de los ambientes a intervenir y de los materiales elegidos. Por eso el proceso incluye el levantamiento del espacio y la selección de materiales antes del presupuesto, para que conozcas el costo con el diseño ya definido y sin sorpresas." },
+  { q: "¿Cuánto tiempo toma una remodelación?", a: "Depende del alcance del proyecto y de los ambientes a intervenir. Antes de ejecutar definimos contigo el plan de trabajo y los tiempos de cada etapa, y te acompañamos durante toda la obra hasta la entrega final." },
+  { q: "¿También diseñan oficinas?", a: "Sí. Diseñamos oficinas funcionales y modernas que mejoran la productividad y reflejan la identidad de tu marca." },
+  { q: "¿Qué materiales utilizan?", a: "Trabajamos con materiales de alta calidad y proveedores de confianza para garantizar acabados duraderos y sofisticados." },
+  { q: "¿Por qué elegir Bi Arq 1.0?", a: "Diseños personalizados, materiales de alta calidad, acompañamiento completo, atención al detalle y entrega profesional." },
+  { q: "¿Cómo empiezo mi proyecto?", a: "Escríbenos por correo o WhatsApp y agendamos la reunión inicial. Ahí escuchamos tus ideas, hacemos el levantamiento del espacio y empezamos el diseño 3D de tu proyecto." },
+  { q: "¿Dónde están y cómo los contacto?", a: "Estamos en Bogotá, Colombia. Escríbenos a creacionesdeinterioresbiarq@gmail.com o llámanos al 319 282 0726. Instagram: @Biarq1.0. TikTok: @Bi.Arq.1.0." },
+];
+
 export type Project = {
   slug: string; index: string; name: string; location: string;
   typology: string; summary: string; cover: string;

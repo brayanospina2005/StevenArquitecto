@@ -2,8 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Reveal, SlatsImage } from "@/components/Reveal";
 import FaqList from "@/components/FaqList";
-import { processSteps, site, IM } from "@/lib/data";
-import { pageMeta } from "@/lib/seo";
+import { faqs, processSteps, serviceNames, site, IM } from "@/lib/data";
+import { breadcrumbJsonLd, faqJsonLd, pageMeta, servicesJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
   title: "Servicios",
@@ -11,19 +11,6 @@ export const metadata: Metadata = pageMeta({
     "Diseño de interiores, remodelación de apartamentos y casas, cocinas, baños, iluminación, mobiliario, renderizado 3D y supervisión de obra en Bogotá.",
   path: "/services",
 });
-
-const allServices = [
-  "Diseño de interiores",
-  "Remodelación de apartamentos",
-  "Remodelación de casas",
-  "Diseño de cocinas",
-  "Diseño de baños",
-  "Iluminación arquitectónica",
-  "Mobiliario personalizado",
-  "Renderizado 3D",
-  "Supervisión de obra",
-  "Asesoría en materiales",
-];
 
 const details = [
   { n: "01", name: "Diseño de cocinas", text: "Creamos cocinas que combinan estética, funcionalidad y tecnología, adaptadas a tu estilo de vida.", get: "Distribución inteligente · Material de alta calidad · Diseño personalizado", img: "/projects/01/09.webp" },
@@ -36,20 +23,32 @@ const details = [
 
 export default function ServicesPage() {
   return (
-    <div className="mx-auto max-w-[1600px] px-5 md:px-10">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd()) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd([
+            { name: "Inicio", path: "/" },
+            { name: "Servicios", path: "/services" },
+          ])),
+        }}
+      />
+      <div className="mx-auto max-w-[1600px] px-5 md:px-10">
       <section className="py-16 md:py-24">
         <Reveal>
           <p className="label text-[#665b52] mb-5">Nuestros servicios</p>
           <h1 className="display text-[clamp(44px,7.5vw,110px)] mb-8 max-w-[1000px]">Diseño, arquitectura y remodelación.</h1>
           <p className="text-[18px] leading-relaxed text-[#4b3b31] max-w-[640px]">
-            {site.philosophy}
+            Bi Arq 1.0 es un estudio de diseño, arquitectura y remodelación de interiores en Bogotá, Colombia. {site.philosophy}
           </p>
         </Reveal>
       </section>
 
       <section className="pb-16">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-[#cec5b8]">
-          {allServices.map((name, i) => (
+          {serviceNames.map((name, i) => (
             <Reveal key={name} delay={(i % 3) * 0.06} className="border-b border-r border-[#cec5b8]">
               <div className="p-6 md:p-7 flex items-baseline gap-4 h-full hover:bg-[#ded7cc]/50 transition-colors">
                 <span className="text-[13px] font-medium text-[#b83d1c]">{String(i + 1).padStart(2, "0")}</span>
@@ -117,6 +116,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

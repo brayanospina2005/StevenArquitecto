@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Reveal, SlatsImage } from "@/components/Reveal";
 import { projects } from "@/lib/data";
-import { pageMeta } from "@/lib/seo";
+import { breadcrumbJsonLd, pageMeta, projectsListJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
   title: "Proyectos",
@@ -13,7 +13,18 @@ export const metadata: Metadata = pageMeta({
 
 export default function ProjectsPage() {
   return (
-    <div className="mx-auto max-w-[1600px] px-5 md:px-10">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsListJsonLd(projects)) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd([
+            { name: "Inicio", path: "/" },
+            { name: "Proyectos", path: "/projects" },
+          ])),
+        }}
+      />
+      <div className="mx-auto max-w-[1600px] px-5 md:px-10">
       <section className="py-16 md:py-24">
         <Reveal>
           <p className="label text-[#665b52] mb-5">Proyectos</p>
@@ -57,6 +68,7 @@ export default function ProjectsPage() {
           ))}
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

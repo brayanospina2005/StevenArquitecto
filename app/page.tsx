@@ -4,6 +4,7 @@ import { Hero, Stats, IndexList } from "@/components/HomeSections";
 import { LazyCompareSlider, LazyLightStudy, LazyPlanDrawing, LazyProcessStage } from "@/components/LazySections";
 import Photo from "@/components/Photo";
 import { projects, materialSwatches, processSteps, site, whyUs, IM } from "@/lib/data";
+import { defaultDescription, webPageJsonLd } from "@/lib/seo";
 
 const featured = projects[0];
 
@@ -19,6 +20,16 @@ const steps = processSteps.map((title, i) => ({ n: `0${i + 1}`, title }));
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(webPageJsonLd({
+            name: "Bi Arq 1.0 | Diseño, arquitectura y remodelación en Bogotá",
+            description: defaultDescription,
+            path: "/",
+          })),
+        }}
+      />
       <Hero />
       <LazyLightStudy />
       <Stats />

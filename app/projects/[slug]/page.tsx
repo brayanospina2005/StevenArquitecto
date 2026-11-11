@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Reveal, SlatsImage } from "@/components/Reveal";
 import CompareSlider from "@/components/CompareSlider";
 import { projects, IM } from "@/lib/data";
-import { pageMeta } from "@/lib/seo";
+import { pageMeta, projectJsonLd } from "@/lib/seo";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -45,6 +45,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="mx-auto max-w-[1600px] px-5 md:px-10">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd(p)) }} />
       {/* Hero */}
       <section className="pt-12 md:pt-16 pb-10">
         <Reveal>

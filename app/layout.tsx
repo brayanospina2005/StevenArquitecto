@@ -41,7 +41,14 @@ export const metadata: Metadata = {
     "iluminación arquitectónica",
     "renderizado 3D",
   ],
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    languages: { "es-CO": "/", "x-default": "/" },
+  },
+  other: {
+    "geo.region": "CO-DC",
+    "geo.placename": "Bogotá, Colombia",
+  },
   robots: {
     index: true,
     follow: true,

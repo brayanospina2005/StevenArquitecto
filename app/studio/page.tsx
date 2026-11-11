@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Reveal, SlatsImage } from "@/components/Reveal";
 import { site, whyUs, IM } from "@/lib/data";
-import { pageMeta } from "@/lib/seo";
+import { breadcrumbJsonLd, pageMeta, webPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
   title: "Estudio",
@@ -20,6 +20,26 @@ const principles = [
 export default function StudioPage() {
   return (
     <div className="mx-auto max-w-[1600px] px-5 md:px-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(webPageJsonLd({
+            name: "Estudio | Bi Arq 1.0",
+            description: "Bi Arq 1.0 nace para transformar espacios en Bogotá. Diseños personalizados, materiales de alta calidad y acompañamiento de la reunión a la entrega.",
+            path: "/studio",
+            type: "AboutPage",
+          })),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd([
+            { name: "Inicio", path: "/" },
+            { name: "Estudio", path: "/studio" },
+          ])),
+        }}
+      />
       <section className="py-16 md:py-24">
         <Reveal>
           <p className="label text-[#665b52] mb-5">Nuestra historia</p>

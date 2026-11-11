@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { site } from "@/lib/data";
+import { site, serviceNames, type Project } from "@/lib/data";
 
 export const siteUrl = "https://stevenarquitecto.vercel.app";
 
@@ -54,6 +54,8 @@ export function pageMeta({
   };
 }
 
+const studioRef = { "@id": `${siteUrl}/#estudio` };
+
 export function jsonLd() {
   return {
     "@context": "https://schema.org",
@@ -75,6 +77,28 @@ export function jsonLd() {
           addressCountry: "CO",
         },
         areaServed: { "@type": "City", name: "Bogotá" },
+        knowsAbout: serviceNames,
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: "+573192820726",
+          email: site.email,
+          contactType: "customer service",
+          areaServed: "CO",
+          availableLanguage: ["es"],
+        },
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Servicios de diseño, arquitectura y remodelación de interiores",
+          itemListElement: serviceNames.map((name) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name,
+              provider: studioRef,
+              areaServed: { "@type": "City", name: "Bogotá" },
+            },
+          })),
+        },
         sameAs: [site.instagram, site.tiktok],
       },
       {
@@ -84,8 +108,103 @@ export function jsonLd() {
         name: site.name,
         inLanguage: "es-CO",
         description: defaultDescription,
-        publisher: { "@id": `${siteUrl}/#estudio` },
+        publisher: studioRef,
       },
     ],
+  };
+}
+
+export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: item.path === "/" ? siteUrl : `${siteUrl}${item.path}`,
+    })),
+  };
+}
+
+export function faqJsonLd(faqs: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: "es-CO",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}
+
+export function servicesJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Diseño, arquitectura y remodelación de interiores",
+    description: defaultDescription,
+    url: `${siteUrl}/services`,
+    provider: studioRef,
+    serviceType: serviceNames,
+    areaServed: { "@type": "City", name: "Bogotá" },
+    inLanguage: "es-CO",
+  };
+}
+
+export function projectsListJsonLd(projects: Project[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Proyectos de remodelación de interiores de Bi Arq 1.0",
+    inLanguage: "es-CO",
+    itemListElement: projects.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: `${p.name} — ${p.typology} en ${p.location}`,
+      url: `${siteUrl}/projects/${p.slug}`,
+      image: `${siteUrl}${p.cover}`,
+    })),
+  };
+}
+
+export function projectJsonLd(p: Project) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CreativeWork",
+        name: `${p.name} — ${p.typology}`,
+        headline: p.name,
+        description: p.summary,
+        url: `${siteUrl}/projects/${p.slug}`,
+        inLanguage: "es-CO",
+        image: [p.cover, ...p.gallery].map((src) => `${siteUrl}${src}`),
+        creator: studioRef,
+        locationCreated: { "@type": "City", name: "Bogotá" },
+        about: p.services,
+      },
+      breadcrumbJsonLd([
+        { name: "Inicio", path: "/" },
+        { name: "Proyectos", path: "/projects" },
+        { name: p.name, path: `/projects/${p.slug}` },
+      ]),
+    ],
+  };
+}
+
+export function webPageJsonLd({ name, description, path, type = "WebPage" }: { name: string; description: string; path: string; type?: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": type,
+    name,
+    description,
+    url: path === "/" ? siteUrl : `${siteUrl}${path}`,
+    inLanguage: "es-CO",
+    image: `${siteUrl}${ogImage.url}`,
+    about: studioRef,
+    isPartOf: { "@id": `${siteUrl}/#sitio` },
   };
 }

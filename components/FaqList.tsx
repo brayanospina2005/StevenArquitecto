@@ -1,15 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-const faqs = [
-  { q: "¿Qué servicios ofrece Bi Arq 1.0?", a: "Diseño de interiores, remodelación de apartamentos y de casas, diseño de cocinas y de baños, iluminación arquitectónica, mobiliario personalizado, renderizado 3D, supervisión de obra y asesoría en materiales." },
-  { q: "¿Cómo es el proceso de trabajo?", a: "Reunión con el cliente, levantamiento del espacio, diseño 3D, selección de materiales, presupuesto, ejecución y entrega final." },
-  { q: "¿Puedo ver mi proyecto antes de la obra?", a: "Sí. Con los renderizados 3D visualizas tu proyecto antes de hacerlo realidad, con imágenes realistas que te permiten tomar decisiones con confianza." },
-  { q: "¿Qué materiales utilizan?", a: "Trabajamos con materiales de alta calidad y proveedores de confianza para garantizar acabados duraderos y sofisticados." },
-  { q: "¿Por qué elegir Bi Arq 1.0?", a: "Diseños personalizados, materiales de alta calidad, acompañamiento completo, atención al detalle y entrega profesional." },
-  { q: "¿Dónde están y cómo los contacto?", a: "Estamos en Bogotá, Colombia. Escríbenos a creacionesdeinterioresbiarq@gmail.com o llámanos al 319 282 0726. Instagram: @Biarq1.0. TikTok: @Bi.Arq.1.0." },
-];
+import { faqs } from "@/lib/data";
 
 export default function FaqList() {
   const [openFaq, setOpenFaq] = useState(0);

@@ -1,0 +1,64 @@
+# Bi Arq 1.0
+
+> Bi Arq 1.0 es un estudio de diseño, arquitectura y remodelación de interiores en Bogotá, Colombia. Transforma apartamentos, casas y oficinas combinando creatividad, funcionalidad y materiales de alta calidad, con acompañamiento completo desde la primera reunión hasta la entrega final.
+
+## Datos clave
+
+- Nombre: Bi Arq 1.0
+- Eslogan: Diseño – Arquitectura – Remodelación
+- Especialidad: Remodelaciones de interiores
+- Ciudad: Bogotá, Colombia
+- Correo: creacionesdeinterioresbiarq@gmail.com
+- Teléfono y WhatsApp: +57 319 282 0726 (https://wa.me/573192820726)
+- Instagram: @Biarq1.0 (https://www.instagram.com/biarq1.0/)
+- TikTok: @Bi.Arq.1.0 (https://www.tiktok.com/@bi.arq.1.0)
+- Sitio web: https://stevenarquitecto.vercel.app
+
+## Servicios
+
+- Diseño de interiores
+- Remodelación de apartamentos
+- Remodelación de casas
+- Diseño de cocinas
+- Diseño de baños
+- Iluminación arquitectónica
+- Mobiliario personalizado
+- Renderizado 3D
+- Supervisión de obra
+- Asesoría en materiales
+
+## Proceso de trabajo
+
+1. Reunión con el cliente
+2. Levantamiento del espacio
+3. Diseño 3D
+4. Selección de materiales
+5. Presupuesto
+6. Ejecución
+7. Entrega final
+
+## Por qué elegir Bi Arq 1.0
+
+- Diseños personalizados
+- Materiales de alta calidad
+- Acompañamiento completo
+- Atención al detalle
+- Entrega profesional
+
+## Páginas
+
+- Inicio: https://stevenarquitecto.vercel.app/
+- Proyectos: https://stevenarquitecto.vercel.app/projects
+- Estudio: https://stevenarquitecto.vercel.app/studio
+- Servicios: https://stevenarquitecto.vercel.app/services
+- Contacto: https://stevenarquitecto.vercel.app/contact
+
+## Proyectos
+
+- Apartamento 01 — Remodelación integral de apartamento en Bogotá: sala, cocina, baño y habitación renovados con materiales de alta calidad. https://stevenarquitecto.vercel.app/projects/remodelacion-apartamento-01
+- Apartamento 02 — Cocina abierta, closets y mobiliario a medida, habitación y baño, en Bogotá. https://stevenarquitecto.vercel.app/projects/remodelacion-apartamento-02
+- Apartamento 03 — Sala y espacios sociales, habitación y baño renovados, en Bogotá. https://stevenarquitecto.vercel.app/projects/remodelacion-apartamento-03
+
+## Contenido completo
+
+Versión extendida con la historia del estudio, el detalle de cada servicio y las preguntas frecuentes: https://stevenarquitecto.vercel.app/llms-full.txt
