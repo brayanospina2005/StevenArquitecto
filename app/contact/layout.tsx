@@ -1,9 +1,11 @@
+import { site } from "@/lib/data";
 import { breadcrumbJsonLd, pageMeta, webPageJsonLd } from "@/lib/seo";
+
+const description = `Cuéntanos tu proyecto. Bi Arq 1.0 en Bogotá: ${site.email} y +57 319 282 0726, también por WhatsApp, Instagram y TikTok.`;
 
 export const metadata = pageMeta({
   title: "Contacto",
-  description:
-    "Cuéntanos tu proyecto. Bi Arq 1.0 en Bogotá: creacionesdeinterioresbiarq@gmail.com y +57 319 282 0726, también por WhatsApp, Instagram y TikTok.",
+  description,
   path: "/contact",
 });
 
@@ -15,8 +17,7 @@ export default function ContactLayout({ children }: { children: React.ReactNode 
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(webPageJsonLd({
             name: "Contacto | Bi Arq 1.0",
-            description:
-              "Cuéntanos tu proyecto. Bi Arq 1.0 en Bogotá: creacionesdeinterioresbiarq@gmail.com y +57 319 282 0726, también por WhatsApp, Instagram y TikTok.",
+            description,
             path: "/contact",
             type: "ContactPage",
           })),

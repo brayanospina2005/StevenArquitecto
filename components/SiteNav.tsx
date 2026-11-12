@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { site } from "@/lib/data";
 
 const links = [
   { href: "/projects", label: "Proyectos" },
@@ -62,7 +63,7 @@ export default function SiteNav() {
         <div>
           <Link href="/contact" className="flex items-center justify-center gap-2 bg-[#eeeae3] text-[#2b1f18] font-medium py-4 rounded-[4px] mb-5">Empezar un proyecto ↗</Link>
           <div className="flex flex-col gap-2 text-[13px] text-[#a89a8d]">
-            <a href="mailto:creacionesdeinterioresbiarq@gmail.com" className="break-all">creacionesdeinterioresbiarq@gmail.com</a>
+            <a href={`mailto:${site.email}`} className="break-all">{site.email}</a>
             <a href="tel:+573192820726">+57 319 282 0726 · Bogotá, Colombia</a>
           </div>
         </div>

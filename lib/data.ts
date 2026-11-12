@@ -2,7 +2,7 @@ export const site = {
   name: "Bi Arq 1.0",
   tagline: "Diseño – Arquitectura – Remodelación",
   headline: "Remodelaciones de interiores",
-  email: "creacionesdeinterioresbiarq@gmail.com",
+  email: "biarqceo@gmail.com",
   phoneDisplay: "319 282 0726",
   phoneIntl: "+57 319 282 0726",
   phoneHref: "tel:+573192820726",
@@ -61,7 +61,7 @@ export const faqs = [
   { q: "¿Qué materiales utilizan?", a: "Trabajamos con materiales de alta calidad y proveedores de confianza para garantizar acabados duraderos y sofisticados." },
   { q: "¿Por qué elegir Bi Arq 1.0?", a: "Diseños personalizados, materiales de alta calidad, acompañamiento completo, atención al detalle y entrega profesional." },
   { q: "¿Cómo empiezo mi proyecto?", a: "Escríbenos por correo o WhatsApp y agendamos la reunión inicial. Ahí escuchamos tus ideas, hacemos el levantamiento del espacio y empezamos el diseño 3D de tu proyecto." },
-  { q: "¿Dónde están y cómo los contacto?", a: "Estamos en Bogotá, Colombia. Escríbenos a creacionesdeinterioresbiarq@gmail.com o llámanos al 319 282 0726. Instagram: @Biarq1.0. TikTok: @Bi.Arq.1.0." },
+  { q: "¿Dónde están y cómo los contacto?", a: "Estamos en Bogotá, Colombia. Escríbenos a biarqceo@gmail.com o llámanos al 319 282 0726. Instagram: @Biarq1.0. TikTok: @Bi.Arq.1.0." },
 ];
 
 export type Project = {
