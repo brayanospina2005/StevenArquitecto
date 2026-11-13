@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Reveal, SlatsImage } from "@/components/Reveal";
+import { GalleryProvider, OpenablePhoto } from "@/components/GalleryViewer";
 import CompareSlider from "@/components/CompareSlider";
 import { projects, IM } from "@/lib/data";
 import { pageMeta, projectJsonLd } from "@/lib/seo";
@@ -44,6 +45,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   ];
 
   return (
+    <GalleryProvider name={p.name} images={[p.cover, ...p.gallery]}>
     <div className="mx-auto max-w-[1600px] px-5 md:px-10">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd(p)) }} />
       {/* Hero */}
@@ -66,7 +68,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </Reveal>
       </section>
 
-      <SlatsImage src={p.cover} alt={p.name} ratio="aspect-[16/9]" sizes="100vw" priority />
+      <OpenablePhoto index={0} src={p.cover} alt={p.name} ratio="aspect-[16/9]" sizes="100vw" priority />
 
       {/* Story */}
       <section className="grid lg:grid-cols-12 gap-10 py-20 md:py-28">
@@ -99,18 +101,18 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
           {/* Gallery */}
           <div className="grid md:grid-cols-2 gap-5 mt-10">
-            <SlatsImage src={p.gallery[0]} alt={`Galería de ${p.name}`} ratio="aspect-[3/4]" />
-            <div className="md:pt-24"><SlatsImage src={p.gallery[1]} alt={`Galería de ${p.name}`} ratio="aspect-square" /></div>
+            <OpenablePhoto index={1} src={p.gallery[0]} alt={`Galería de ${p.name}`} ratio="aspect-[3/4]" />
+            <div className="md:pt-24"><OpenablePhoto index={2} src={p.gallery[1]} alt={`Galería de ${p.name}`} ratio="aspect-square" /></div>
           </div>
-          <div className="mt-5"><SlatsImage src={p.gallery[2]} alt={`Galería de ${p.name}`} ratio="aspect-[16/9]" /></div>
+          <div className="mt-5"><OpenablePhoto index={3} src={p.gallery[2]} alt={`Galería de ${p.name}`} ratio="aspect-[16/9]" /></div>
           <div className="grid md:grid-cols-2 gap-5 mt-5">
-            <SlatsImage src={p.gallery[3]} alt={`Galería de ${p.name}`} ratio="aspect-[16/10]" />
-            <SlatsImage src={p.gallery[4]} alt={`Galería de ${p.name}`} ratio="aspect-[16/10]" />
+            <OpenablePhoto index={4} src={p.gallery[3]} alt={`Galería de ${p.name}`} ratio="aspect-[16/10]" />
+            <OpenablePhoto index={5} src={p.gallery[4]} alt={`Galería de ${p.name}`} ratio="aspect-[16/10]" />
           </div>
           {p.gallery.length > 5 && (
             <div className="grid md:grid-cols-2 gap-5 mt-5">
-              {p.gallery.slice(5).map((src) => (
-                <SlatsImage key={src} src={src} alt={`Galería de ${p.name}`} ratio="aspect-[3/4]" />
+              {p.gallery.slice(5).map((src, i) => (
+                <OpenablePhoto key={src} index={6 + i} src={src} alt={`Galería de ${p.name}`} ratio="aspect-[3/4]" />
               ))}
             </div>
           )}
@@ -153,5 +155,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </section>
       )}
     </div>
+    </GalleryProvider>
   );
 }

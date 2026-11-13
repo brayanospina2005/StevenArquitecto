@@ -55,6 +55,12 @@ body {
   to { transform: scaleY(0); }
 }
 
+@keyframes gallery-in {
+  from { opacity: 0; transform: translate3d(var(--shift, 28px), 0, 0); }
+  to { opacity: 1; transform: none; }
+}
+.gallery-in { animation: gallery-in 0.38s cubic-bezier(.22,.7,.3,1); }
+
 .link-line { position: relative; }
 .link-line::after {
   content: "";
